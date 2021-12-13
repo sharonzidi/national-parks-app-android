@@ -1,7 +1,5 @@
 package edu.neu.khoury.madsea.parks;
 
-import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,16 +19,15 @@ import java.util.List;
 
 import edu.neu.khoury.madsea.parks.adapter.OnParkClickListener;
 import edu.neu.khoury.madsea.parks.adapter.ParkRecyclerViewAdapter;
-import edu.neu.khoury.madsea.parks.data.AsyncResponse;
-import edu.neu.khoury.madsea.parks.data.Repository;
 import edu.neu.khoury.madsea.parks.model.Park;
 import edu.neu.khoury.madsea.parks.model.ParkViewModel;
 
-public class ParksFragment extends Fragment implements OnParkClickListener{
+public class ParksFragment extends Fragment implements OnParkClickListener {
     private RecyclerView recyclerView;
     private ParkRecyclerViewAdapter parkRecyclerViewAdapter;
     private List<Park> parkList;
     private ParkViewModel parkViewModel;
+
 
     public ParksFragment() {
         // Required empty public constructor
@@ -46,6 +43,7 @@ public class ParksFragment extends Fragment implements OnParkClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         parkList = new ArrayList<>();
+
     }
 
     @Override
@@ -60,12 +58,13 @@ public class ParksFragment extends Fragment implements OnParkClickListener{
             recyclerView.setAdapter(parkRecyclerViewAdapter);
         }
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_parks, container, false);
         recyclerView = view.findViewById(R.id.park_recycler);
         recyclerView.setHasFixedSize(true);
@@ -81,6 +80,7 @@ public class ParksFragment extends Fragment implements OnParkClickListener{
         getFragmentManager().beginTransaction()
                 .replace(R.id.park_fragment, DetailsFragment.newInstance())
                 .commit();
+
 
     }
 }

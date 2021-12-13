@@ -3,9 +3,12 @@ package edu.neu.khoury.madsea.parks.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,17 +32,25 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Imag
 
     @Override
     public void onBindViewHolder(@NonNull ImageSlider holder, int position) {
-        
+        Picasso.get()
+                .load(imagesList.get(position).getUrl())
+                .fit()
+                .error(android.R.drawable.stat_notify_error)
+                .placeholder(android.R.drawable.stat_sys_download)
+                .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return imagesList.size();
     }
 
     public class ImageSlider extends RecyclerView.ViewHolder{
+        public ImageView imageView;
+
         public ImageSlider(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.view_pager_imageview);
         }
     }
 }
